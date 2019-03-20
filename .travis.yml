@@ -1,0 +1,9 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+install:
+  - npm install -g truffle@5.0.3
+script:
+  - truffle compile
+  - truffle test
