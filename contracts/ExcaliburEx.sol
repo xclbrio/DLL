@@ -49,21 +49,21 @@ contract ExcaliburEx {
     ////
     
     function deposit() payable public tradeIsOpen {
-        // tokens[0][msg.sender] = safeAdd(tokens[0][msg.sender], msg.value);
-        // Deposit(0, msg.sender, msg.value, tokens[0][msg.sender]);
+        tokens[0][msg.sender] = safeAdd(tokens[0][msg.sender], msg.value);
+        Deposit(0, msg.sender, msg.value, tokens[0][msg.sender]);
     }
 
     function withdraw(uint amount) public {
-        // if (tokens[0][msg.sender] < amount) throw;
-        // tokens[0][msg.sender] = safeSub(tokens[0][msg.sender], amount);
-        // if (!msg.sender.call.value(amount)()) throw;
-        // Withdraw(0x0000000000000000000000000000000000000000, msg.sender, amount, tokens[0][msg.sender]);
+        require(tokens[0][msg.sender] >= amount);
+        tokens[0][msg.sender] = safeSub(tokens[0][msg.sender], amount);
+        require(msg.sender.call.value(amount)());
+        Withdraw(0x0000000000000000000000000000000000000000, msg.sender, amount, tokens[0][msg.sender]);
     }
 
     function depositToken(address token, uint amount) public tradeIsOpen {
-        // if (token==0) throw;
-        // if (!Token(token).transferFrom(msg.sender, this, amount)) throw;
-        // tokens[token][msg.sender] = safeAdd(tokens[token][msg.sender], amount);
+        require(token!=0);
+        require(Token(token).transferFrom(msg.sender, this, amount));
+        tokens[token][msg.sender] = safeAdd(tokens[token][msg.sender], amount);
     }
 
     function withdrawToken(address token, uint amount) public {
