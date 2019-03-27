@@ -44,26 +44,5 @@ contract TestExcaliburEx {
         newEx.transferOwnership(expected);
         Assert.equal(newEx.admin(), expected, "has the admin changed");
     }
-
-    ////
-    // Check Ex functions
-    ////
-    
-    // function testExAddingNew() public {
-    //     tempEx = new ExcaliburEx();
-    //     address newExAdr = 0x1000000000000000000000000000000000000000;
-    //     bool connectStatus;
-    //     bool tradeStatus;
-    //     string memory shortName;
-    //     string memory fullName;
-    //     string memory weblink;
-    //     tempDLL.exAddNew(newExAdr, "test_shrt_name", "test_fill_name", "test_weblink.com");
-    //     (connectStatus, tradeStatus, shortName, fullName, weblink) = tempDLL.exchanges_list(newExAdr);
-    //     Assert.equal(connectStatus, false, "at first new Ex have connectStatus - false");
-    //     Assert.equal(tradeStatus, false, "at first new Ex have tradeStatus - false");
-    //     Assert.equal(shortName, "test_shrt_name", "new Ex have true shortName");
-    //     Assert.equal(fullName, "test_fill_name", "new Ex have true fullName");
-    //     Assert.equal(weblink, "test_weblink.com", "new Ex have true weblink");
-    // }
     
 }

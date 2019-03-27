@@ -106,7 +106,7 @@ contract ExcaliburDLL is AbstractExcaliburDLL {
     function order(address tokenGet, uint amountGet, address tokenGive, uint amountGive, address exchange) public exIsConnected returns(bool) {
         bytes32 hash = keccak256(abi.encodePacked(this, tokenGet, amountGet, tokenGive, amountGive, exchange));
         orders[exchange][msg.sender][hash] = true;
-        // Order(tokenGet, amountGet, tokenGive, amountGive, exchange, msg.sender, hash);
+        Order(tokenGet, amountGet, tokenGive, amountGive, exchange, msg.sender, hash);
         return true;
     }
 
@@ -120,9 +120,9 @@ contract ExcaliburDLL is AbstractExcaliburDLL {
     }
 
     function cancelOrder(address tokenGet, uint amountGet, address tokenGive, uint amountGive, address exchange) public exIsConnected returns(bool) {
-        // bytes32 hash = keccak256(abi.encodePacked(this, tokenGet, amountGet, tokenGive, amountGive, expires, nonce, exchange));
-        //if (!(orders[exchange][msg.sender][hash] || ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == msg.sender)) throw;
-        //orderFills[exchange][msg.sender][hash] = amountGet;
+        bytes32 hash = keccak256(abi.encodePacked(this, tokenGet, amountGet, tokenGive, amountGive, expires, nonce, exchange));
+        if (!(orders[exchange][msg.sender][hash] || ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == msg.sender)) throw;
+        orderFills[exchange][msg.sender][hash] = amountGet;
         //Cancel(tokenGet, amountGet, tokenGive, amountGive, expires, nonce, exchange, msg.sender, v, r, s, hash, pair);
         return true;
     }

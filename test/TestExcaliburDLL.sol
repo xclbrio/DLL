@@ -106,39 +106,4 @@ contract TestExcaliburDLL{
         Assert.equal(weblink, "new_test_weblink.com", "changing Ex trade status must be correct");
     }
 
-
-
-// contract TestHooks {
-//   uint someValue;
-
-//   function beforeEach() {
-//     someValue = 5;
-//   }
-
-//   function beforeEachAgain() {
-//     someValue += 1;
-//   }
-
-//   function testSomeValueIsSix() {
-//     uint expected = 6;
-
-//     Assert.equal(someValue, expected, "someValue should have been 6");
-//   }
-// }
-
-// contract TestContract {
-//   // Truffle will send the TestContract one Ether after deploying the contract.
-//   uint public initialBalance = 1 ether;
-
-//   function testInitialBalanceUsingDeployedContract() {
-//     MyContract myContract = MyContract(DeployedAddresses.MyContract());
-
-//     // perform an action which sends value to myContract, then assert.
-//     myContract.send(...);
-//   }
-
-//   function () {
-//     // This will NOT be executed when Ether is sent. \o/
-//   }
-
 }
