@@ -67,11 +67,11 @@ contract ExcaliburEx {
     }
 
     function withdrawToken(address token, uint amount) public {
-        // if (token==0) throw;
-        // if (tokens[token][msg.sender] < amount) throw;
-        // tokens[token][msg.sender] = safeSub(tokens[token][msg.sender], amount);
-        // if (!Token(token).transfer(msg.sender, amount)) throw;
-        // Withdraw(token, msg.sender, amount, tokens[token][msg.sender]);
+        require(token==0);
+        require(!(tokens[token][msg.sender] < amount));
+        tokens[token][msg.sender] = safeSub(tokens[token][msg.sender], amount);
+        require(Token(token).transfer(msg.sender, amount));
+        Withdraw(token, msg.sender, amount, tokens[token][msg.sender]);
     }
     
     function balanceOf(address token, address user) public returns (uint) {
