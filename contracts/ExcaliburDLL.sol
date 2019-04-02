@@ -122,9 +122,9 @@ contract ExcaliburDLL is AbstractExcaliburDLL {
     function cancelOrder(address tokenGet, uint amountGet, address tokenGive, uint amountGive, address exchange) public exIsConnected returns(bool) {
         bytes32 hash = keccak256(abi.encodePacked(this, tokenGet, amountGet, tokenGive, amountGive, exchange));
         
-        // require(orders[exchange][msg.sender][hash] || ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == msg.sender);
+        require(orders[exchange][msg.sender][hash] || ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == msg.sender);
         orderFills[exchange][msg.sender][hash] = amountGet;
-        //Cancel(tokenGet, amountGet, tokenGive, amountGive, expires, nonce, exchange, msg.sender, v, r, s, hash, pair);
+        Cancel(tokenGet, amountGet, tokenGive, amountGive, expires, nonce, exchange, msg.sender, v, r, s, hash, pair);
         return true;
     }
 }
