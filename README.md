@@ -19,6 +19,16 @@ Each product that uses Excalibur_ protocol for exchange and wants to connect to 
 
 If the product is not registered in the global pool, it is still able to connect to the general flow of orders, but is not able to execute them, as the smart contract of protocol verifies the address of the order creator’s exchange and the address of the executor each time an exchange is done.
 
+The commission that the global pool charges with DEX is calculated by using the following formula where:
+ __MakerFee__ – a commission rate applied by the EXC protocol for Makers operations
+__TakerFee__ - the commission rate applied by the EXC protocol for Takers operations
+__dexAMakerVolume__ –liquidity Maker type operations done by / DEX A application during the estimated period
+__dexATakerVolume__ –liquidity Taker type operations done by / DEX A application during the estimated period
+__PoolMakerVolume__ - total amount of operations of liquidity Maker type processed by EXC protocol
+__PoolTakerVolume__ – total amount of operations of liquidity Taker type processed by EXC protocol
+__dexATotalVolume__ – total amount of all transactions done by the / DEX A application during the estimated period
+__poolTotalVolume__ – total amount of all transactions processed by EXC protocol during the estimated period
+
 
 
 Communication channels
